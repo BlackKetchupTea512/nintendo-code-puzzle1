@@ -5,12 +5,14 @@ main = do
   let bs = simpleBars $ after_bs
   let bs' = next bs
   let results = takeWhile (/= after_bs) $ progress bs'
-  mapM (putStrLn . decode_morse . take_away_tea) results
+  let results' = map (take_away_tea . decode_morse . take_away_tea) results
+  mapM putStrLn results'
+  putStrLn $ last results' ++ head results'
 
 take_away_tea :: String -> String
 take_away_tea "" = ""
 take_away_tea (c:cs)
-  | c == 'T' = ' ':take_away_tea cs
+  | c == 'T' = take_away_tea cs
   | otherwise = c:take_away_tea cs
 
 simpleBars :: String -> String

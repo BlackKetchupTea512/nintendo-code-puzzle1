@@ -11,5 +11,5 @@ def lttb(m,e,n,c):
   if pow(m,e) % n == c: return str(m)
   return ""
 
-for i in range(100000):
+for i in range(30000):
   print(lttb(*[int(j) for j in (str(i), 17, 3569, 915) ]))
